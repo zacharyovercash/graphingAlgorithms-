@@ -1,0 +1,64 @@
+
+public class edge {
+	int weight;
+	vertex A, B;
+	
+	/**
+	 * Creates edge between a and b
+	 * @param a - vertex a
+	 * @param b - vertex b
+	 * @param edgeWeight - weight of edge
+	 */
+	public edge(vertex a, vertex b, int edgeWeight) {
+		A = a;
+		B = b;
+		weight = edgeWeight;
+	}
+	
+	/**
+	 * Gets weight of edge
+	 * @return int - weight
+	 */
+	public int getWeight() {
+		return weight;
+	}
+	
+	/**
+	 * Get first vertex of edge
+	 * @return String
+	 */
+	public String getA() {
+		return A.getID();
+	}
+	
+	/**
+	 * Gets second vertex of edge
+	 * @return String
+	 */
+	public String getB() {
+		return B.getID();
+	}
+	
+	/**
+	 * Changes weight of edge
+	 * @param newWeight
+	 */
+	public void setWeight(int newWeight) {
+		weight = newWeight;
+	}
+	
+	/**
+	 * Returns edge with lesser weight of two
+	 * @param otherEdge - edge to compare
+	 * @return lesser weight
+	 */
+	public edge leastWeight(edge otherEdge) {
+		if (weight > otherEdge.getWeight()) {
+			return otherEdge;
+		}
+		else {
+			return this;
+		}
+	}
+	
+}
