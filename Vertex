@@ -1,0 +1,66 @@
+import java.util.*;
+
+public class vertex {
+	ArrayList<edge> edges;
+	String vertexID;
+	
+	/**
+	 * Create new vertex
+	 * @param vertexName - name of vertex 
+	 */
+	public vertex(String vertexID) {
+		this.vertexID = vertexID;
+		edges = new ArrayList<edge>();
+	}
+	
+	/**
+	 *  Checks if edge already exists
+	 * @param otherEdge - new potential edge
+	 * @return true if edge doesnt already exist, otherwise false
+	 */
+	public boolean hasEdge(edge otherEdge) {
+		return edges.contains(otherEdge);
+	}
+	
+	/**
+	 * Adds new edge if possible
+	 * @param newEdge - edge to add
+	 */
+	public void addEdge(edge newEdge) {
+		if(!hasEdge(newEdge)) {
+			edges.add(newEdge);
+		}
+	}
+	
+	/**
+	 * Gets an edge
+	 * @param ind - index of edge to get
+	 * @return edge at ind
+	 */
+	public edge getEdges(int ind) {
+		return edges.get(ind);
+	}
+	
+	/**
+	 * Gets vertex identification
+	 * @return String
+	 */
+	public String getID() {
+		return vertexID;
+		
+	}
+	/**
+	 * Counts number of edges
+	 */
+	public int countEdges() {
+		return edges.size();
+	}
+	
+	/**
+	 * Copies the vertex's edges
+	 * @return copy of edges
+	 */
+	public ArrayList<edge> copyEdges() {
+		return new ArrayList<edge>(edges);
+	}
+}
