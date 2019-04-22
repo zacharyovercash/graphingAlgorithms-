@@ -1,0 +1,28 @@
+import java.util.*;
+
+public class Kruskall {
+	Graph g, mst;
+	int V, E;
+	Queue<edge> edgeQueue;
+	
+	public Kruskall(Graph in) {
+		g = in;
+		mst = new Graph();
+		g.orderEdges();
+		V = g.V.size();
+		E = g.E.size();
+		edgeQueue = new LinkedList<edge>();
+	}
+	
+	public Graph findMST() {
+		for(int i = 0; i<g.E.size(); i++) {
+			edgeQueue.add(g.E.get(i));
+		}
+		
+		int enc = 0;
+		while(enc < V-1) {
+			edge curEdge = edgeQueue.remove();
+			
+		}
+	}
+}
