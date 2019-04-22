@@ -48,4 +48,27 @@ class Graph {
 			System.out.println(E.get(i).getA() + ", " + E.get(i).getB() + ", " + E.get(i).getWeight());
 		}
 	}
+	
+	/**
+	 * Orders edge weight from least to greatest
+	 */
+	public void orderEdges() {
+		int n = E.size();
+		
+        for (int i = 0; i < n-1; i++) 
+        { 
+            // Find the minimum element in unsorted array 
+            int min = i; 
+            for (int j = i+1; j < n; j++) 
+                if (E.get(j).getWeight() < E.get(min).getWeight()) {
+                    min = j;
+                }
+  
+            // Swap the found minimum element with the first 
+            // element 
+            edge temp = E.get(min); 
+            E.set(min, E.get(i)); 
+            E.set(i, temp); 
+        } 
+	}
 }
