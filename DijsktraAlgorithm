@@ -28,29 +28,45 @@ public class dij {
 			shortestPath[i] = false;
 		}
 		
-		//Distance of first vertex is 0, set min very large;
+		//Distance of first vertex is 0
 		distance[start] = 0;
-		int min = 99999;
-		int min_ind = -1;
 		
 		//Find paths
 		for(int i = 0; i<size;i++) {
-			//If not in final graph and is smaller, add it
+			
+			int min_ind = minDistance();
+			
+			//Add path to shortestPath
+			shortestPath[min_ind] = true;
+			
+			//Check dijkstra's alg 
+			for (int k = 0; k < size; k++) {
+				if (!shortestPath[k] && graph[min_ind][k]!=0 && distance[min_ind] != 99999 && distance[min_ind] + graph[min_ind][k] < distance[k]) 
+					distance[k] = distance[min_ind] + graph[min_ind][k]; 
+			}
+		}
+		printDijResult();
+	}
+	
+	/**
+	 * Get the vertex with least distance
+	 * @return int - index of least distance
+	 */
+	public int minDistance() {
+		
+		//Initialize min very large
+		int min = 99999;
+		int min_ind = 0;
+		for(int i = 0; i<size;i++) {
+			//If not in final graph and is smaller, get index
 			if(shortestPath[i] == false && distance[i] < min) {
 				min = distance[i];
 				min_ind = i;
 			}
-			
-			//Add path to shortestPath
-			shortestPath[min] = true;
-			
-			//Check dijkstra's alg 
-			for (int v = 0; v < size; v++) {
-				if (!shortestPath[i] && graph[min_ind][i]!=0 && distance[min_ind] != 99999 && distance[min_ind] + graph[min_ind][i] < distance[i]) 
-					distance[i] = distance[min_ind] + graph[min_ind][i]; 
-			}
 		}
-		printDijResult();
+		
+		return min_ind;
+		
 	}
 	
 	/**
@@ -59,6 +75,6 @@ public class dij {
 	public void printDijResult() {
 		System.out.println("Vertex   Distance"); 
         for (int i = 0; i < size; i++) 
-            System.out.println(i+"    "+distance[i]); 
+            System.out.println(i+"        "+distance[i]); 
 	}
 }
