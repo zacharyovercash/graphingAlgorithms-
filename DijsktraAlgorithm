@@ -1,0 +1,64 @@
+/*
+ * Creates shortest path from starting vertex
+ * Got some help from:
+ * Credit: https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/
+ */
+import java.util.*;
+
+public class dij {
+	
+	//Initialize variables
+	int[] distance;
+	int start, size=10;
+	Boolean shortestPath[];
+	
+	/**
+	 * Construct setup for dijsktra's algorithm
+	 * @param graph - graph to find shortest path of
+	 */
+	public dij(int graph[][]) {
+		//Distance is path length, shortestPath is true if vertex is in the path yet
+		distance = new int[size];
+		start = 0;
+		shortestPath = new Boolean[size];
+		
+		//Set distance as very large placeholder, set shortestPath as false
+		for(int i = 0; i<size; i++) {
+			distance[i] = 99999;
+			shortestPath[i] = false;
+		}
+		
+		//Distance of first vertex is 0, set min very large;
+		distance[start] = 0;
+		int min = 99999;
+		int min_ind = -1;
+		
+		//Find paths
+		for(int i = 0; i<size;i++) {
+			//If not in final graph and is smaller, add it
+			if(shortestPath[i] == false && distance[i] < min) {
+				min = distance[i];
+				min_ind = i;
+			}
+			
+			//Add path to shortestPath
+			shortestPath[min] = true;
+			
+			//Check dijkstra's alg 
+			for (int v = 0; v < size; v++) {
+				if (!shortestPath[i] && graph[min_ind][i]!=0 && distance[min_ind] != 99999 && distance[min_ind] + graph[min_ind][i] < distance[i]) 
+					distance[i] = distance[min_ind] + graph[min_ind][i]; 
+			}
+		}
+		printDijResult();
+	}
+	
+	/**
+	 * Prints the Shortest Path
+	 */
+	public void printDijResult() {
+		System.out.println("Vertex   Distance"); 
+        for (int i = 0; i < size; i++) 
+            System.out.println(i+"    "+distance[i]); 
+	}
+}
