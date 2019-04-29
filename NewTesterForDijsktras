@@ -1,3 +1,4 @@
+
 import java.util.*;
 import java.io.*;
 
@@ -5,22 +6,24 @@ public class AlgTestNew {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		
-		int graph[][] = new int[][] {};
+		
+		int graph[][] = new int[10][10];
 		int start = 0, end, weight;
 		File newFile = new File("graph.txt");
 		Scanner in = new Scanner(newFile);
 		
 		
 		//Read in data
-		while(in.hasNext()) {
+		while(in.hasNextInt()) {
 			start = in.nextInt();
 			if(start != 999) {
 				end = in.nextInt();
 				weight = in.nextInt();
 				graph[start][end] = weight;
 			}
-			
 		}
+		
+		//Use Dijsktras Alg to find Shortest Path
 		dij shortestPath = new dij(graph);	
 	}
 
